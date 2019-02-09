@@ -37,7 +37,7 @@ class GeneratePassword extends Component {
                 /><span>Decryption</span>
                 {display}
 
-                <p className="warning">Note: we do not store/saved your password. This web-application will not track your keystroke but
+                <p className="warning">Note: This web-application will not track your keystroke but
                     we do not hold account for any password leak.</p>
 
             </div>

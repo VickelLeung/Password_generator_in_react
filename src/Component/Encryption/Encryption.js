@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 
 import Button from './../UI/Button/Button';
-
+import axios from '../../axios';
 import { Form, TextArea } from 'semantic-ui-react'
+
+import Rodal from 'rodal';
+// include styles
+import 'rodal/lib/rodal.css';
 
 class Encryption extends Component {
 
@@ -16,7 +20,12 @@ class Encryption extends Component {
         nouns: [],
         pronoun: [],
         isLeet: false,
-        clickLeet: true
+        clickLeet: true,
+        dataSave: {
+            password: "",
+            key: ""
+        },
+        visible: false
     }
 
     updateUserInput = (event) => {
@@ -56,18 +65,46 @@ class Encryption extends Component {
         let newInput = "";
         let newPass = "";
         let keyString = [];
+        let newData = { ...this.state.dataSave }
 
         for (let i = 0; i < userInput.length; i++) {
             keyString[i] = Math.round((Math.random() * 5) + 1);
             newInput = String.fromCharCode(userInput.charCodeAt(i) + keyString[i]);
             newPass += newInput;
         }
-
-        this.setState({ userKey: keyString, password: newPass })
+        newData.password = newPass;
+        newData.key = keyString;
+        console.log("newData Pass" + newData.password + " new data key" + newData.key);
+        this.setState({ userKey: keyString, password: newPass, dataSave: newData })
+        console.log("newData Pass:" + this.state.dataSave.password + " new data key:" + this.state.dataSave.key);
     }
 
     modulus = () => {
 
+    }
+
+    saveHandler = (event) => {
+        // event.preventDefault();
+
+        const userData = {
+            ...this.state.dataSave
+        }
+
+        console.log(userData.password + " " + userData.key)
+
+        console.log("userData" + userData);
+        if (userData.password !== "" && userData.key !== "")
+            axios.post('/user-data.json', userData)
+                .then(response => {
+                    console.log("modals true");
+                    this.show();
+                    // this.setState({ loading: false });
+                    // this.props.history.push('/');
+                })
+                .catch(error => {
+
+                    // this.setState({ loading: false });
+                });
     }
 
     onToggleHit = (click) => {
@@ -82,6 +119,14 @@ class Encryption extends Component {
                 return
 
         }
+    }
+
+    show = () => {
+        this.setState({ visible: true });
+    }
+
+    hide = () => {
+        this.setState({ visible: false });
     }
 
     render() {
@@ -111,13 +156,10 @@ class Encryption extends Component {
                 {displayLeet}
             </div>
 
-
-
         if (this.state.userKey)
             displayPara = <div>
                 <p>Here is your Encrypted paragraph</p>
             </div>
-
 
         return (
             <div>
@@ -131,6 +173,13 @@ class Encryption extends Component {
                     <span>Encrypt your password with key</span> <input onChange={this.updateUserInput} type="text" placeholder="Enter your password" />
                     <Button type="secondary" click={this.encryption}>Encrypt</Button>
                     {displayKey}
+                    <Button click={this.saveHandler}>Save Data</Button>
+
+                    <Rodal visible={this.state.visible} onClose={this.hide}>
+                        <div>
+                            <h2>Your content have been saved.</h2>
+                        </div>
+                    </Rodal>
 
                 </div>
             </div>
