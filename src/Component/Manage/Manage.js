@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserInfo from './UserInfo/userInfo';
 import axios from './../../axios';
+import userInfo from './UserInfo/userInfo';
 
 class Manage extends Component {
 
@@ -27,13 +28,17 @@ class Manage extends Component {
 
         return (
             <div>
-                <h2>test</h2>
-                {this.state.data.map(data => (
+
+                <UserInfo
+                    password={this.state.data.password}
+                    key={this.state.data.key}
+                />
+
+                {/* {this.state.data.map(data => (
                     <UserInfo
-                        password={data.password}
-                        key={data.key}
+
                     />
-                ))}
+                ))} */}
             </div>
         )
     }
