@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import fire from './../fire';
 import Button from '../UI/Button/Button';
 import Rodal from 'rodal';
-import rodal from 'rodal';
+import { Redirect } from 'react-router-dom';
 
 class Logging extends Component {
 
@@ -43,7 +43,8 @@ class Logging extends Component {
         fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then((u) => {
                 console.log("loggedIn");
-                this.setState({ isSignedIn: true })
+                this.setState({ isSignedIn: true });
+                < Redirect to="/home" />
             })
             .catch((error) => {
                 console.log(error);
@@ -93,10 +94,15 @@ class Logging extends Component {
 
                 <input onChange={(event) => this.updateInput(event, 'email')} placeholder="Email"></input>
                 <input onChange={(event) => this.updateInput(event, 'password')} placeholder="Password"></input>
-                <Button click={this.login}>Submit</Button>
-                {showLoginRodal}
-                <br />
-                <Button click={this.register}>register</Button>
+
+                <div>
+                    <Button click={this.login}>Login</Button>
+                    {showLoginRodal}
+
+                    <Button click={this.register}>register</Button>
+
+                </div>
+
                 {/* <div>
                     <Button clicked={this.switchAuthModeHandler} btnType="Danger">Switch to {this.state.isSignedIn ? "Signin" : "Signup"}</Button>
                 </div> */}
