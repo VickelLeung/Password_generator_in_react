@@ -44,12 +44,13 @@ class Logging extends Component {
             .then((u) => {
                 console.log("loggedIn");
                 this.setState({ isSignedIn: true });
-                < Redirect to="/home" />
+
             })
             .catch((error) => {
                 console.log(error);
                 alert("error no user");
             })
+
     }
 
     register = (event) => {
@@ -93,7 +94,7 @@ class Logging extends Component {
                 <h2>{this.state.isSignedIn ? "Registration" : "Login"}</h2>
 
                 <input onChange={(event) => this.updateInput(event, 'email')} placeholder="Email"></input>
-                <input onChange={(event) => this.updateInput(event, 'password')} placeholder="Password"></input>
+                <input type="password" onChange={(event) => this.updateInput(event, 'password')} placeholder="Password"></input>
 
                 <div>
                     <Button click={this.login}>Login</Button>
@@ -109,6 +110,8 @@ class Logging extends Component {
                 <p>Email: {this.state.email}</p>
                 <p>pass: {this.state.password}</p>
             </div>
+
+
         )
     }
 
