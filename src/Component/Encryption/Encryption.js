@@ -172,8 +172,9 @@ class Encryption extends Component {
 
                     <span>Encrypt your password with key</span> <input onChange={this.updateUserInput} type="text" placeholder="Enter your password" />
                     <Button type="secondary" click={this.encryption}>Encrypt</Button>
+                    <Button click={this.saveHandler}>Save Encryption</Button>
                     {displayKey}
-                    <Button click={this.saveHandler}>Save Data</Button>
+
 
                     <Rodal visible={this.state.visible} onClose={this.hide}>
                         <div>
