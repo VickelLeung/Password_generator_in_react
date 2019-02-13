@@ -27,6 +27,7 @@ class GeneratePassword extends Component {
         else
             display = <Decryption />
 
+
         return (
             <div >
                 {/* <h2>Security Overlord</h2> */}

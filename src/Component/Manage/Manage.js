@@ -10,7 +10,9 @@ class Manage extends Component {
     }
 
     componentDidMount() {
-        axios.get("/user-data")
+
+
+        axios.get("/user-data.json")
             .then(response => {
                 const fetchData = [];
 
@@ -21,18 +23,41 @@ class Manage extends Component {
                     })
                 }
                 this.setState({ data: fetchData })
+
+                // console.log("data:" + this.state.data);
             })
     }
 
     render() {
 
+        // will map throug data state and print everything inside
+        // this.state.data.map((u) => (
+        //     console.log(u.password + " : " + u.key)
+        // ))
+
         return (
             <div>
+                <h2>Stored information</h2>
+                {this.state.data.map((u) => (
+                    <div>
+                        {/* <p>password : {u.password}</p>
+                            <p>key : {u.key}</p> */}
 
-                <UserInfo
-                    password={this.state.data.password}
-                    key={this.state.data.key}
-                />
+                        <UserInfo
+                            password={u.password}
+                            keys={u.key}
+                        />
+                    </div>
+                ))
+                }
+
+                {/* {this.state.data.map(u => (
+                    <UserInfo
+                        password={this.state.data.password}
+                        keys={this.state.data.key}
+                    />
+                ))} */}
+
 
                 {/* {this.state.data.map(data => (
                     <UserInfo

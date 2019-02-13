@@ -1,15 +1,14 @@
 import React from 'react';
 
-// import classes from './AppDetail.css';
+import './userInfo.css';
 
 const userInfo = (props) => {
 
     return (
         <div>
-            <h2>Stored information</h2>
-            <section>
+            <section className="box">
                 <p>Password: {props.password} </p>
-                <p>Key: {props.key}</p>
+                <p>Key: {props.keys}</p>
             </section>
 
         </div>
