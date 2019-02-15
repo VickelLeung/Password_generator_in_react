@@ -1,41 +1,68 @@
 import React, { Component } from 'react';
 import Encryption from '../Encryption/Encryption';
 import Decryption from '../Decryption/Decryption';
-import Toggle from 'react-toggle'
+import Button from './../UI/Button/Button';
+import Toggle from 'react-toggle';
 
 import './GeneratePassword.css';
 class GeneratePassword extends Component {
 
     state = {
-        chose: true
+        chose: ""
     }
 
-    toggleChose = () => {
+    // toggleChose = () => {
 
-        let click = this.state.chose;
+    //     let click = this.state.chose;
 
-        this.setState({ chose: !click })
-        console.log(this.state.chose)
+    //     this.setState({ chose: !click })
+    //     console.log(this.state.chose)
+    // }
+
+    setDisplay = (display) => {
+        if (display === "random")
+            this.setState({ chose: "random" })
+        else if (display === "encryption")
+            this.setState({ chose: "encryption" })
+        else if (display === "decryption")
+            this.setState({ chose: "decryption" })
+
+        console.log("state:" + this.state.chose);
     }
+
+
+
 
     render() {
 
         let display = "";
 
-        if (this.state.chose)
-            display = <Encryption />
-        else
-            display = <Decryption />
+        // switch (user) {
+        //     case this.state.chose === "":
+        //         console.log("sd");
+        //         break;
+        // }
 
+        if (this.state.chose === "encryption")
+            display = <Encryption />
+        else if (this.state.chose === "decryption")
+            display = <Decryption />
+        // else if (this.state.chose === "random")
 
         return (
             <div >
                 {/* <h2>Security Overlord</h2> */}
 
-                <span>Encryption</span><Toggle
+                {/* <span>Encryption</span><Toggle
                     icons={false}
                     onChange={this.toggleChose}
-                /><span>Decryption</span>
+                /><span>Decryption</span> */}
+                <Button click={() => this.setDisplay("random")} >Random</Button>
+                <Button click={() => this.setDisplay("encryption")} >Encryption</Button>
+                <Button click={() => this.setDisplay("decryption")}>Decryption</Button>
+
+                {/* place navbar */}
+
                 {display}
 
                 <p className="warning">Note: This web-application will not track your keystroke but

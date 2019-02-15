@@ -8,6 +8,7 @@ const userInfo = (props) => {
         <div>
             <section className="box">
                 <p>Password: {props.password} </p>
+                <p>Encryption: {props.encryption}</p>
                 <p>Key: {props.keys}</p>
             </section>
 
