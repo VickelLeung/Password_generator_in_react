@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "firebase": "^5.8.2",
-    "react": "^16.7.0",
+    "react": "^16.8.1",
     "react-awesome-button": "^5.0.0",
     "react-dom": "^16.7.0",
     "react-firebase": "^2.2.8",
@@ -13,6 +13,7 @@
     "react-reveal-text": "^0.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.3",
+    "react-sticky": "^5.0.8",
     "react-toggle": "^4.0.2",
     "react-typist": "^2.0.5",
     "rodal": "^1.6.3",
