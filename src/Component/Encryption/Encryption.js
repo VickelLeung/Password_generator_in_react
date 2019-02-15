@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Button from './../UI/Button/Button';
 import axios from '../../axios';
+import firebase from 'firebase';
 import { Form, TextArea } from 'semantic-ui-react'
 
 import Rodal from 'rodal';
@@ -23,6 +24,7 @@ class Encryption extends Component {
         clickLeet: true,
         dataSave: {
             password: "",
+            encryption: "",
             key: ""
         },
         visible: false
@@ -72,7 +74,9 @@ class Encryption extends Component {
             newInput = String.fromCharCode(userInput.charCodeAt(i) + keyString[i]);
             newPass += newInput;
         }
-        newData.password = newPass;
+        // console.log("userPass" + userInput);
+        newData.password = userInput;
+        newData.encryption = newPass;
         newData.key = keyString;
         console.log("newData Pass" + newData.password + " new data key" + newData.key);
         this.setState({ userKey: keyString, password: newPass, dataSave: newData })
@@ -92,19 +96,25 @@ class Encryption extends Component {
 
         console.log(userData.password + " " + userData.key)
 
-        console.log("userData" + userData);
-        if (userData.password !== "" && userData.key !== "")
-            axios.post('/user-data.json', userData)
-                .then(response => {
-                    console.log("modals true");
-                    this.show();
-                    // this.setState({ loading: false });
-                    // this.props.history.push('/');
-                })
-                .catch(error => {
+        if (firebase.auth().currentUser) {
+            let uid = firebase.auth().currentUser.uid
+            console.log(uid);
 
-                    // this.setState({ loading: false });
-                });
+
+            console.log("userData" + userData);
+            if (userData.password !== "" && userData.key !== "")
+                axios.post("/" + uid + '/user-data.json', userData)
+                    .then(response => {
+                        console.log("modals true");
+                        this.show();
+                        // this.setState({ loading: false });
+                        // this.props.history.push('/');
+                    })
+                    .catch(error => {
+
+                        // this.setState({ loading: false });
+                    });
+        }
     }
 
     onToggleHit = (click) => {

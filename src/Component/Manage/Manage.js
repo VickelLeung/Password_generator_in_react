@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserInfo from './UserInfo/userInfo';
 import axios from './../../axios';
 import userInfo from './UserInfo/userInfo';
+import firebase from 'firebase';
 
 class Manage extends Component {
 
@@ -11,21 +12,26 @@ class Manage extends Component {
 
     componentDidMount() {
 
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                let uid = firebase.auth().currentUser.uid;
+                console.log("uid: " + uid);
+                axios.get("/" + uid + "/user-data.json")
+                    .then(response => {
+                        const fetchData = [];
 
-        axios.get("/user-data.json")
-            .then(response => {
-                const fetchData = [];
-
-                for (let key in response.data) {
-                    fetchData.push({
-                        ...response.data[key],
-                        id: key
+                        for (let key in response.data) {
+                            fetchData.push({
+                                ...response.data[key],
+                                id: key
+                            })
+                        }
+                        this.setState({ data: fetchData })
                     })
-                }
-                this.setState({ data: fetchData })
-
-                // console.log("data:" + this.state.data);
-            })
+            } else {
+                console.log("User isn't login");
+            }
+        })
     }
 
     render() {
@@ -44,26 +50,13 @@ class Manage extends Component {
                             <p>key : {u.key}</p> */}
 
                         <UserInfo
+                            encryption={u.encryption}
                             password={u.password}
                             keys={u.key}
                         />
                     </div>
                 ))
                 }
-
-                {/* {this.state.data.map(u => (
-                    <UserInfo
-                        password={this.state.data.password}
-                        keys={this.state.data.key}
-                    />
-                ))} */}
-
-
-                {/* {this.state.data.map(data => (
-                    <UserInfo
-
-                    />
-                ))} */}
             </div>
         )
     }

@@ -4,34 +4,35 @@ import HomePage from './Component/Homepage/Homepage';
 import Logging from './Component/Logging/Logging';
 import Manage from './Component/Manage/Manage';
 import NavBar from './Component/Header/Header';
-import fire from './Component/fire';
+// import fire from './Component/fire';
+// import firebase from 'firebase';
 
 import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom'
 import './App.css';
 
 class App extends Component {
 
-  state = {
-    user: null
-  }
+  // state = {
+  //   user: null
+  // }
 
-  componentDidMount() {
-    this.authListener();
-  }
+  // componentDidMount() {
+  //   this.authListener();
+  // }
 
-  authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
-      // console.log(user);
-      if (user) {
-        this.setState({ user });
-        localStorage.setItem('user', user.uid);
-      }
-      else {
-        this.setState({ user: null });
-        localStorage.removeItem('user');
-      }
-    })
-  }
+  // authListener = () => {
+  //   firebase.auth().onAuthStateChanged((user) => {
+  //     // console.log(user);
+  //     if (user) {
+  //       this.setState({ user });
+  //       localStorage.setItem('user', user.uid);
+  //     }
+  //     else {
+  //       this.setState({ user: null });
+  //       localStorage.removeItem('user');
+  //     }
+  //   })
+  // }
 
   render() {
     return (
@@ -49,7 +50,6 @@ class App extends Component {
 
               {/* <Route path="/encryption" /> */}
               {/* <Route path="/generate-password" exact component={GeneratePassword} /> */}
-              <Route path="/login" />
               <Route path="/" exact component={HomePage} />
             </Switch>
           </div>
