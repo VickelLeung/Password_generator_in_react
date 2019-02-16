@@ -10,6 +10,7 @@ const userInfo = (props) => {
                 <p>Password: {props.password} </p>
                 <p>Encryption: {props.encryption}</p>
                 <p>Key: {props.keys}</p>
+                <button>Delete Information</button>
             </section>
 
         </div>

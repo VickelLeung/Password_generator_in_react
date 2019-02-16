@@ -145,11 +145,10 @@ class Encryption extends Component {
         let toggleLeet = "";
         let displayKey = "";
 
-        let toggleEncrypt = "";
 
-        let displayPara = "";
+        let displayPassword = "";
 
-        if (this.state.userKey != null) {
+        if (this.state.password) {
             displayKey = <div>
                 <p>Here is your new password: {this.state.password}</p>
                 <p>Here is the key {this.state.userKey}</p>
@@ -166,21 +165,21 @@ class Encryption extends Component {
                 {displayLeet}
             </div>
 
-        if (this.state.userKey)
-            displayPara = <div>
-                <p>Here is your Encrypted paragraph</p>
-            </div>
+        // if (this.state.userKey)
+        //     displayPara = <div>
+        //         <p>Here is your Encrypted paragraph</p>
+        //     </div>
 
         return (
             <div>
 
-                {/* <h2>Choose your type of password generator</h2> */}
+                <h2>Encrypt your password</h2>
 
                 <div className="generatePass">
 
                     {toggleLeet}
 
-                    <span>Encrypt your password with key</span> <input onChange={this.updateUserInput} type="text" placeholder="Enter your password" />
+                    <span>Encrypt your password with key</span> <input onChange={this.updateUserInput} type="text" />
                     <Button type="secondary" click={this.encryption}>Encrypt</Button>
                     <Button click={this.saveHandler}>Save Encryption</Button>
                     {displayKey}

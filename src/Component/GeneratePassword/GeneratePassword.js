@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Encryption from '../Encryption/Encryption';
 import Decryption from '../Decryption/Decryption';
 import Button from './../UI/Button/Button';
+import Random from '../Random/Random';
+
 import Toggle from 'react-toggle';
 
 import './GeneratePassword.css';
@@ -30,9 +32,6 @@ class GeneratePassword extends Component {
         console.log("state:" + this.state.chose);
     }
 
-
-
-
     render() {
 
         let display = "";
@@ -47,7 +46,8 @@ class GeneratePassword extends Component {
             display = <Encryption />
         else if (this.state.chose === "decryption")
             display = <Decryption />
-        // else if (this.state.chose === "random")
+        else if (this.state.chose === "random")
+            display = <Random />
 
         return (
             <div >

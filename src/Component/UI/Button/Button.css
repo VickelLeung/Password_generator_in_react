@@ -8,7 +8,7 @@
     --button-hover-pressure: 1;
     --transform-speed: 0.175s;
     
-    --button-primary-color: #e21a88;
+    --button-primary-color: #0354be;
     --button-primary-color-dark: #1360a4;
     --button-primary-color-light: #ffffff;
     --button-primary-color-hover: #187bd1;
@@ -25,4 +25,5 @@
     --button-anchor-color-light: #ffffff;
     --button-anchor-color-hover: #0d4a7f;
     --button-anchor-border: none;
+
     }
