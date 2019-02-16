@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import Button from '../UI/Button/Button';
 import Rodal from 'rodal';
+import { NavLink } from 'react-router-dom';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import './Logging.css'
 
@@ -66,7 +67,10 @@ class Logging extends Component {
                     <span  >
                         <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
                         <img className="userImg" src={firebase.auth().currentUser.photoURL} alt="User" />
-                        <Button click={() => firebase.auth().signOut()}>Sign out!</Button>
+                        {/* <Button click={() => firebase.auth().signOut()}>Sign out!</Button> */}
+                        {/* <NavLink to="/generate-password">Generate password</NavLink> */}
+                        {/* <NavLink to="/user-information">Saved data</NavLink> */}
+
                     </span>
                 ) : (
                         <StyledFirebaseAuth
@@ -75,8 +79,8 @@ class Logging extends Component {
                         />
 
                     )}
-                <p>Email: {this.state.email}</p>
-                <p>pass: {this.state.password}</p>
+                {/* <p>Email: {this.state.email}</p>
+                <p>pass: {this.state.password}</p> */}
             </div>
 
         )

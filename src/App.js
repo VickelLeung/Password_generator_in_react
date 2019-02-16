@@ -4,53 +4,87 @@ import HomePage from './Component/Homepage/Homepage';
 import Logging from './Component/Logging/Logging';
 import Manage from './Component/Manage/Manage';
 import NavBar from './Component/Header/Header';
-// import fire from './Component/fire';
-// import firebase from 'firebase';
+import Button from './Component/UI/Button/Button';
+import firebase from 'firebase';
+
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
 import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom'
 import './App.css';
 
 class App extends Component {
 
-  // state = {
-  //   user: null
-  // }
+  state = {
+    isLogged: false
+  }
 
-  // componentDidMount() {
-  //   this.authListener();
-  // }
+  componentDidMount() {
 
-  // authListener = () => {
-  //   firebase.auth().onAuthStateChanged((user) => {
-  //     // console.log(user);
-  //     if (user) {
-  //       this.setState({ user });
-  //       localStorage.setItem('user', user.uid);
-  //     }
-  //     else {
-  //       this.setState({ user: null });
-  //       localStorage.removeItem('user');
-  //     }
-  //   })
-  // }
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        let uid = firebase.auth().currentUser.uid;
+        console.log("uid: " + uid);
+        this.setState({
+          isLogged: true
+        })
+      } else {
+        console.log("User isn't login");
+        this.setState({ isLogged: false })
+      }
+    })
+  }
+
+  logout = () => {
+    firebase.auth().signOut();
+
+  }
 
   render() {
+
+    let displayLogComponent = "";
+    let displayLogLink = "";
+    let displayLogout = "";
+    let displayUserRoute = "";
+
+    if (!this.state.isLogged) {
+      displayLogLink = <NavBar />
+
+    }
+    else {
+      displayLogLink = (
+        <div>
+          <Button type="secondary">
+            <NavLink to="/user-information">View saved data</NavLink>
+          </Button>
+          <Button type="secondary" >
+            <NavLink to="/generate-password">Generate password</NavLink>
+          </Button>
+          <Button type="secondary" click={() => firebase.auth().signOut()}>Sign out!</Button>
+
+        </div >)
+
+      displayUserRoute = <Route path="/user-information" component={Manage} />
+    }
+
+    displayLogComponent = <Route path="/logging" component={Logging} />
+
     return (
       <BrowserRouter>
         <div className="App">
           <div className="navBar">
-            <NavBar />
+            {displayLogLink}
           </div>
 
           <div className="content">
-            <Switch>
-              <Route path="/logging" component={Logging} />
-              <Route path="/user-information" component={Manage} />
-              <Route path="/generate-password" exact component={GeneratePassword} />
 
-              {/* <Route path="/encryption" /> */}
-              {/* <Route path="/generate-password" exact component={GeneratePassword} /> */}
+            <Switch>
+              {displayLogComponent}
+              <Route path="/generate-password" exact component={GeneratePassword} />
               <Route path="/" exact component={HomePage} />
+              {displayUserRoute}
+              <Route render={() => <h1>Error, page not found error 404</h1>} />
             </Switch>
           </div>
         </div>

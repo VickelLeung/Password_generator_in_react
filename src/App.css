@@ -15,7 +15,8 @@
 }
 
 .navBar{
-  /* position:\ relative; */
-  /* left:40%; */
+  /* padding: 5%; */
+  position: relative;
+  left:30%;
 }
 

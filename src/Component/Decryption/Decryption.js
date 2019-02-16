@@ -54,19 +54,20 @@ class Decryption extends Component {
 
         return (
 
-            <div className="generatePass">
+            <div>
+                <h2>Decrypt your password</h2>
+                <div className="generatePass">
+                    <input onChange={this.updateUserInput} type="text" placeholder="Enter your Encryption" />
+                    <input onChange={this.updateUserKey} type="text" placeholder="Enter your key" />
+                    <Button type="secondary" click={this.decryption}>Decrypt</Button>
+                    {displayKey}
+                    <p>*you will need to provide an encryption and key to decrypt.</p>
 
-                <span>Decrypt your password with key</span>
-                <input onChange={this.updateUserInput} type="text" placeholder="Enter your Encryption" />
-                <input onChange={this.updateUserKey} type="text" placeholder="Enter your key" />
-                <Button type="secondary" click={this.decryption}>Encrypt</Button>
-                {displayKey}
-                <p>*you will need to provide an encryption and key to decrypt.</p>
-
-                {/* <br />
+                    {/* <br />
                 <span>Decrypt your sentence with modulus</span> <input onChange={this.updateUserInput} type="text" placeholder="Enter your password" />
                 <Button type="secondary" click={this.modulus}>Encrypt</Button> */}
 
+                </div>
             </div>
         )
     }
