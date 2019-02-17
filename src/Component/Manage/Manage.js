@@ -34,6 +34,16 @@ class Manage extends Component {
         })
     }
 
+    deleted = (id) => {
+        console.log("delete entry");
+        let uid = firebase.auth().currentUser.uid;
+        axios.delete("/" + uid + "/user-data/" + id + ".json")
+            .then()
+            .catch(response => {
+                console.log(response);
+            })
+    }
+
     render() {
 
         // will map throug data state and print everything inside
@@ -53,6 +63,7 @@ class Manage extends Component {
                             encryption={u.encryption}
                             password={u.password}
                             keys={u.key}
+                            delete={() => this.deleted(u.id)}
                         />
                     </div>
                 ))

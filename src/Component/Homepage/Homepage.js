@@ -4,7 +4,6 @@ import { AwesomeButton } from 'react-awesome-button';
 import './Homepage.css';
 
 //library imports
-import Typist from 'react-typist';
 import ReactRevealText from 'react-reveal-text';
 import 'react-awesome-button/dist/styles.css';
 
@@ -30,15 +29,12 @@ class Homepage extends Component {
 
         return (
             <div>
-                {/* <Typist> */}
 
-                {/* Password Generator */}
-                {/* </Typist> */}
                 <ReactRevealText style={{ fontWeight: 'bold', fontSize: "55px" }} show={this.state.show} text={title1} />
                 <ReactRevealText style={{ frontSize: "35px", padding: "4%" }} show={this.state.show} text={title2} />
 
                 <AwesomeButton>
-                    <NavLink className="link" to="/generate-password">Generate your password</NavLink>
+                    <NavLink className="link" to="/generate-password">Get started!</NavLink>
                 </AwesomeButton>
             </div >
 

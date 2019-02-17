@@ -4,8 +4,6 @@ import Decryption from '../Decryption/Decryption';
 import Button from './../UI/Button/Button';
 import Random from '../Random/Random';
 
-import Toggle from 'react-toggle';
-
 import './GeneratePassword.css';
 class GeneratePassword extends Component {
 

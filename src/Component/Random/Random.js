@@ -1,5 +1,18 @@
 import React, { Component } from 'react'
 import Checkbox from '@material-ui/core/Checkbox';
+import Slider from '@material-ui/lab/Slider';
+
+import './Random.css';
+
+const styles = {
+    root: {
+        width: 50,
+    },
+    slider: {
+        overflowX: 'hidden',
+        padding: '22px 0px',
+    },
+};
 
 class Random extends Component {
 
@@ -8,7 +21,8 @@ class Random extends Component {
         isUpper: false,
         isLower: false,
         isNumber: false,
-        isSpecial: false
+        isSpecial: false,
+        value: 30
         // checkedA: false,
         // checkedB: false,
         // checkedF: false,
@@ -37,6 +51,11 @@ class Random extends Component {
 
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
+    };
+
+    handleSlider = (event, value) => {
+        this.setState({ value });
+        console.log(this.state.value);
     };
 
     render() {
@@ -77,7 +96,19 @@ class Random extends Component {
 
 
                     <span>Length of password</span>
-                    <input></input>
+                    <input value={this.state.value} ></input>
+                    <br />
+                    <div className="slider">
+                        <Slider
+                            className="sliders"
+                            value={this.state.value}
+                            min={1}
+                            max={50}
+                            step={1}
+                            onChange={this.handleSlider}
+                        />
+                    </div>
+                    <br />
 
                     <button>Generate</button>
                     <p>*by default, it will generate random password with text only</p>
