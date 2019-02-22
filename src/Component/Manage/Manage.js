@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import UserInfo from './UserInfo/userInfo';
 import axios from './../../axios';
-import userInfo from './UserInfo/userInfo';
+import RandomPass from './RandomPassword/RandomPassword';
 import firebase from 'firebase';
 
 class Manage extends Component {
 
     state = {
-        data: []
+        data: [],
+        randomData: []
     }
 
     componentDidMount() {
@@ -28,6 +29,20 @@ class Manage extends Component {
                         }
                         this.setState({ data: fetchData })
                     })
+
+                axios.get("/" + uid + "/random-password.json")
+                    .then(response => {
+                        const fetchPass = [];
+                        for (let key in response.data) {
+                            fetchPass.push({
+                                ...response.data[key],
+                                id: key
+                            })
+                        }
+                        console.log(fetchPass.randomData)
+                        this.setState({ randomData: fetchPass });
+                    })
+
             } else {
                 console.log("User isn't login");
             }
@@ -68,6 +83,14 @@ class Manage extends Component {
                     </div>
                 ))
                 }
+                {/* {this.state.data.map((u) => (
+                    <div>
+                        <RandomPass
+                            randomPassword={u.password}
+                        />
+                    </div>
+                ))} */}
+
             </div>
         )
     }

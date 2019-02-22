@@ -8,7 +8,7 @@
     --button-hover-pressure: 1;
     --transform-speed: 0.175s;
     
-    --button-primary-color: #0354be;
+    --button-primary-color: #5dc942;
     --button-primary-color-dark: #1360a4;
     --button-primary-color-light: #ffffff;
     --button-primary-color-hover: #187bd1;
@@ -20,10 +20,10 @@
     --button-secondary-color-hover: #e1eaf1;
     --button-secondary-border: 2px solid #1e88e5;
 
-    --button-anchor-color: #0e4f88;
-    --button-anchor-color-dark: #072743;
+    --button-anchor-color: #b40000;
+    --button-anchor-color-dark: #500101;
     --button-anchor-color-light: #ffffff;
-    --button-anchor-color-hover: #0d4a7f;
+    --button-anchor-color-hover: #cc0b0b;
     --button-anchor-border: none;
 
     }

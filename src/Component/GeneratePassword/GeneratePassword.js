@@ -55,9 +55,12 @@ class GeneratePassword extends Component {
                     icons={false}
                     onChange={this.toggleChose}
                 /><span>Decryption</span> */}
-                <Button click={() => this.setDisplay("random")} >Random</Button>
-                <Button click={() => this.setDisplay("encryption")} >Encryption</Button>
-                <Button click={() => this.setDisplay("decryption")}>Decryption</Button>
+                <div className="btnGroup">
+
+                    <Button click={() => this.setDisplay("random")} >Random</Button>
+                    <Button click={() => this.setDisplay("encryption")} >Encryption</Button>
+                    <Button click={() => this.setDisplay("decryption")}>Decryption</Button>
+                </div>
 
                 {/* place navbar */}
 

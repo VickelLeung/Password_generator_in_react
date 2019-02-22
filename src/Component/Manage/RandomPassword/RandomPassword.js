@@ -1,15 +1,13 @@
 import React from 'react';
 
-import './userInfo.css';
+import '../UserInfo/userInfo.css';
 
 const userInfo = (props) => {
 
     return (
         <div>
             <section className="box">
-                <p>Password: {props.password} </p>
-                <p>Encryption: {props.encryption}</p>
-                <p>Key: {props.keys}</p>
+                <p>Random password: {props.randomPass}</p>
                 <button onClick={props.delete}>Delete Information</button>
             </section>
         </div>

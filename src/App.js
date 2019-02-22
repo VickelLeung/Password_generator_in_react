@@ -61,7 +61,7 @@ class App extends Component {
           <Button type="secondary" >
             <NavLink to="/generate-password">Generate password</NavLink>
           </Button>
-          <Button type="secondary" click={() => firebase.auth().signOut()}>Sign out!</Button>
+          <Button type="primary" click={() => firebase.auth().signOut()}>Sign out!</Button>
         </div >)
 
       displayUserRoute = <Route path="/user-information" component={Manage} />

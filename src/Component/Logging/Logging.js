@@ -4,7 +4,9 @@ import Button from '../UI/Button/Button';
 import Rodal from 'rodal';
 import { NavLink } from 'react-router-dom';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import anonymous from '../../images/anonymous.png';
 import './Logging.css'
+
 
 firebase.initializeApp({
     apiKey: "AIzaSyCmZJMPZjDi7K34uw5iQMmatD329f0TT3M",
@@ -16,7 +18,7 @@ class Logging extends Component {
 
     state = { isSignedIn: false, visible: true }
     uiConfig = {
-        signInFlow: "popup",
+        signInFlow: "redirect",
         signInOptions: [
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             firebase.auth.EmailAuthProvider.PROVIDER_ID
@@ -28,9 +30,10 @@ class Logging extends Component {
 
     //fetch from firebase the password -> email
     componentDidMount = () => {
+
         firebase.auth().onAuthStateChanged(user => {
             this.setState({ isSignedIn: !!user })
-            console.log("user", user)
+            // console.log("user", user)
         })
     }
 
@@ -40,6 +43,10 @@ class Logging extends Component {
 
     hide = () => {
         this.setState({ visible: false });
+    }
+
+    test() {
+        console.log("test");
     }
 
     render() {
@@ -56,8 +63,31 @@ class Logging extends Component {
 
         let displayLogInfo = null;
 
-        if (!this.state.isSignedIn)
+        if (!this.state.isSignedIn) {
             displayLogInfo = <h3>Please Login below to access the website</h3>
+
+        }
+
+        let displayUserPic = "";
+
+        if (this.state.img !== null)
+            console.log("has pics");
+        else
+            console.log("no pics")
+
+
+
+        // displayUserPic = <img className="userImg" src={firebase.auth().currentUser.photoURL} alt="User" />
+
+        // console.log("User:" + (firebase.auth().currentUser.photoURL));
+
+        // if(firebase.auth().currentUser.photoURL)
+
+        // if (firebase.auth().currentUser !== null)
+        //     if (firebase.auth().currentUser.photoURL() === null)
+        //         console.log("has photo");
+        // else
+        //     console.log("no phoot");
 
         return (
             <div className="App">
@@ -66,10 +96,8 @@ class Logging extends Component {
                 {this.state.isSignedIn ? (
                     <span  >
                         <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
-                        <img className="userImg" src={firebase.auth().currentUser.photoURL} alt="User" />
-                        {/* <Button click={() => firebase.auth().signOut()}>Sign out!</Button> */}
-                        {/* <NavLink to="/generate-password">Generate password</NavLink> */}
-                        {/* <NavLink to="/user-information">Saved data</NavLink> */}
+
+                        <img className="userImg" src={firebase.auth().currentUser.photoURL} alt="User profile" />
 
                     </span>
                 ) : (
@@ -79,8 +107,6 @@ class Logging extends Component {
                         />
 
                     )}
-                {/* <p>Email: {this.state.email}</p>
-                <p>pass: {this.state.password}</p> */}
             </div>
 
         )

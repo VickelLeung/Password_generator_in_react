@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Button from './../UI/Button/Button';
 import axios from '../../axios';
 import firebase from 'firebase';
+import { AwesomeButtonProgress } from 'react-awesome-button';
 import { Form, TextArea } from 'semantic-ui-react'
 
 import Rodal from 'rodal';
@@ -183,7 +184,6 @@ class Encryption extends Component {
                     <Button type="secondary" click={this.encryption}>Encrypt</Button>
                     <Button click={this.saveHandler}>Save Encryption</Button>
                     {displayKey}
-
 
                     <Rodal visible={this.state.visible} onClose={this.hide}>
                         <div>
